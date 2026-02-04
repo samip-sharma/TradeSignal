@@ -96,15 +96,16 @@ export function runBacktest(
   initialCapital = 1000,
   preventOnLosses = false,
   liquidateGroupOnLoss = false,
-  allowSingleTradePerBar = false
+  allowSingleTradePerBar = false,
+  positionSize = 0.1 // Default to 10%
 ) {
   const tradeLog = [];
   let currentCapital = initialCapital;
   let consecutiveLosses = 0;
   let isObserving = false;
 
-  const POSITION_SIZE = 0.1;
-  const MAX_OPEN_POSITIONS = 10;
+  const POSITION_SIZE = positionSize;
+  const MAX_OPEN_POSITIONS = Math.floor(1 / POSITION_SIZE); // Dynamic max positions
 
   let openPositions = [];
   const signalsByEntryBar = groupSignalsByEntryBar(signals);

@@ -193,6 +193,7 @@ export default function RobAnalysisPage() {
   const [preventOnLosses, setPreventOnLosses] = useState(false);
   const [liquidateGroup, setLiquidateGroup] = useState(false);
   const [allowSingleTradePerDay, setAllowSingleTradePerDay] = useState(true);
+  const [positionSize, setPositionSize] = useState("10"); // Default 10%
 
   // --- State for results and UI feedback ---
   const [results, setResults] = useState(null);
@@ -230,6 +231,7 @@ export default function RobAnalysisPage() {
         preventOnLosses,
         liquidateGroup,
         allowSingleTradePerDay,
+        positionSize: parseFloat(positionSize) / 100, // Convert percentage to decimal
       };
 
       const response = await fetch("/api/robDaily", {
@@ -433,6 +435,26 @@ export default function RobAnalysisPage() {
                             <span className="block text-xs text-yellow-500/70 mt-1">If one trade hits stop-loss, close all open trades from the same start date.</span>
                         </div>
                     </label>
+
+                    {/* --- Position Sizing Input --- */}
+                    <div className="p-4 rounded-xl border border-zinc-800 bg-black/20">
+                        <label htmlFor="positionSize" className="block text-sm font-medium text-zinc-400 mb-2">Position Size (% of Capital)</label>
+                        <div className="flex items-center gap-2">
+                             <input
+                                id="positionSize"
+                                type="number"
+                                min="1"
+                                max="100"
+                                value={positionSize}
+                                onChange={(e) => setPositionSize(e.target.value)}
+                                className="w-24 bg-black/50 border border-zinc-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                            />
+                            <span className="text-zinc-500 text-sm">per trade</span>
+                        </div>
+                         <div className="mt-2 text-xs text-zinc-500">
+                             Determines how much capital is allocated to each new trade.
+                         </div>
+                    </div>
               </div>
           </div>
 

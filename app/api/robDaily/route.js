@@ -62,6 +62,7 @@ export async function POST(request) {
       preventOnLosses,
       liquidateGroup,
       allowSingleTradePerDay,
+      positionSize,
     } = await request.json();
 
     // --- Data Fetching (Unchanged) ---
@@ -244,7 +245,8 @@ export async function POST(request) {
       initialCapital,
       preventOnLosses,
       liquidateGroup,
-      allowSingleTradePerDay
+      allowSingleTradePerDay,
+      positionSize
     );
 
     return NextResponse.json({ success: true, data: backtestResults });
