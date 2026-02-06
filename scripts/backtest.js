@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 import Alpaca from '@alpacahq/alpaca-trade-api';
-import { getVolTrapSignal, getWhaleSignal, getHybridDipSignal } from './strategies.js';
+import { getVolTrapSignal, getWhaleSignal, getHybridDipSignal } from '../utils/trade-engine/strategies.js';
 
 // --- CONFIG ---
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });

@@ -2,7 +2,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
 import Alpaca from '@alpacahq/alpaca-trade-api';
-import { getVolTrapSignal, getWhaleSignal, getHybridDipSignal } from '../../utils/finalBot/strategies.js';
+import { getVolTrapSignal, getWhaleSignal, getHybridDipSignal } from '../utils/trade-engine/strategies.js';
 
 // Load env (works locally and in CI if secrets injected)
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });

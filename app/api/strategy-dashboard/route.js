@@ -1,7 +1,7 @@
 
 import { NextResponse } from 'next/server';
 import Alpaca from '@alpacahq/alpaca-trade-api';
-import { getVolTrapSignal, getWhaleSignal, getHybridDipSignal } from '../../../utils/finalBot/strategies';
+import { getVolTrapSignal, getWhaleSignal, getHybridDipSignal } from '../../../utils/trade-engine/strategies';
 import dotenv from 'dotenv';
 import path from 'path';
 

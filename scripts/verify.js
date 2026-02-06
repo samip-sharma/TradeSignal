@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 import Alpaca from '@alpacahq/alpaca-trade-api';
-import { getVolTrapSignal } from './strategies.js';
+import { getVolTrapSignal } from '../utils/trade-engine/strategies.js';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
@@ -114,7 +114,7 @@ async function runFinalCheck() {
 
     // 1. CHEATING CHECK (Code Audit)
     console.log("\n[1/3] VERIFYING 'NO CHEATING'...");
-    const stratPath = path.join(process.cwd(), 'scripts', 'finalBot', 'strategies.js');
+    const stratPath = path.join(process.cwd(), 'utils', 'trade-engine', 'strategies.js');
     const code = fs.readFileSync(stratPath, 'utf8');
     
     if (code.includes('index + 1') || code.includes('index+1')) {
